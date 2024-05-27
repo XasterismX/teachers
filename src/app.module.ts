@@ -1,10 +1,29 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from "@nestjs/config";
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CacheModule } from '@nestjs/cache-manager';
+import { PostModule } from './post/post.module';
+import { Post } from './post/post.entity';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      port: 5432,
+      host: 'localhost',
+      username: 'postgres',
+      password: 'root',
+      synchronize: true,
+      entities: [Post],
+      database: 'teacher',
+      autoLoadEntities: true,
+    }),
+    CacheModule.register({
+      isGlobal: true,
+    }),
+    PostModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
