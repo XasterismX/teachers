@@ -8,6 +8,9 @@ export class Post {
   name: string;
   @Column({ type: 'text', nullable: false })
   data: string;
+  @Column({ type: 'text' })
+  file: string;
   @Column({ type: 'timestamp without time zone' })
   createdAt: Date;
+
 }
