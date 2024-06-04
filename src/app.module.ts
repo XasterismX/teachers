@@ -7,7 +7,12 @@ import { PostModule } from './post/post.module';
 import { Post } from './post/post.entity';
 import { FilesModule } from './files/files.module';
 import { ServeStaticModule } from "@nestjs/serve-static";
+import { UserModule } from './user/user.module';
 import * as path from "path";
+import { User } from "./user/user.entity";
+import { ConfigModule } from "@nestjs/config";
+import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -18,18 +23,20 @@ import * as path from "path";
       username: 'postgres',
       password: 'root',
       synchronize: true,
-      entities: [Post],
+      entities: [Post, User],
       database: 'teacher',
       autoLoadEntities: true,
     }),
-    CacheModule.register({
-      isGlobal: true,
-    }),
     PostModule,
     FilesModule,
-    ServeStaticModule.forRoot({ rootPath:path.resolve(__dirname, "static") })
+    ServeStaticModule.forRoot({
+      rootPath: path.resolve(__dirname, "static")
+
+    }),
+    UserModule,
+    AuthModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthService],
 })
 export class AppModule {}

@@ -33,9 +33,7 @@ export class PostController {
   @Get("/:id")
   async getOnePost(@Param("id") id: number){
     const post = await this.service.getOnePost(id)
-    const img = createReadStream(path.join("./dest/" + post.file))
-
-    return{...post, img: new StreamableFile(img)}
+    return post
   }
 
 
