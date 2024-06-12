@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable, UnauthorizedException } from "@nestjs/common";
 import { UserService } from "../user/user.service";
 import { UserDto } from "../user/user.dto";
 import { JwtService } from "@nestjs/jwt";
@@ -36,5 +36,11 @@ export class AuthService {
     }
     return this.generateJwt({ ...dto, password: null })
   }
-
+async delete(id){
+    const candidate = await this.userService.getOneUser(id)
+  if (!candidate){
+    throw  new HttpException("Пользователь не найден", HttpStatus.BAD_REQUEST)
+  }
+  return this.userService.deleteUser(id)
+}
 }

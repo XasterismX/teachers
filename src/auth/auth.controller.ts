@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, Delete, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { UserDto } from "../user/user.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
@@ -18,6 +18,10 @@ export class AuthController {
   @Post("/login")
   async login(@Body() userDto: UserDto){
     return await this.authService.login(userDto)
+  }
+  @Delete("/:id")
+  async delete(@Body() id: number){
+    return await this.authService.delete(id)
   }
 
 
