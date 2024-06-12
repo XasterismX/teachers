@@ -25,6 +25,10 @@ let UserService = class UserService {
         this.fileService = fileService;
     }
     async createUser(dto, file) {
+        const users = await this.userRepo.find();
+        if (users) {
+            throw new common_1.HttpException("Преподователь зарегестрирован, если Вы преподователь обратитесь к администратору", common_1.HttpStatus.UNAUTHORIZED);
+        }
         dto.password = await bcrypt.hash(dto.password, 10);
         const filaName = await this.fileService.createFile(file);
         const user = await this.userRepo.save({ ...dto, photoName: filaName });

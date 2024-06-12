@@ -13,6 +13,8 @@ import { User } from "./user/user.entity";
 import { ConfigModule } from "@nestjs/config";
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
+import { StuffModule } from './stuff/stuff.module';
+import { Stuff } from "./stuff/staff.entity";
 
 @Module({
   imports: [
@@ -23,7 +25,7 @@ import { AuthModule } from './auth/auth.module';
       username: 'postgres',
       password: 'root',
       synchronize: true,
-      entities: [Post, User],
+      entities: [Post, User,Stuff],
       database: 'teacher',
       autoLoadEntities: true,
     }),
@@ -34,7 +36,8 @@ import { AuthModule } from './auth/auth.module';
 
     }),
     UserModule,
-    AuthModule
+    AuthModule,
+    StuffModule
   ],
   controllers: [AppController],
   providers: [AppService, AuthService],

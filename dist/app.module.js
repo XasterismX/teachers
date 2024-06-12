@@ -20,6 +20,8 @@ const path = require("path");
 const user_entity_1 = require("./user/user.entity");
 const auth_service_1 = require("./auth/auth.service");
 const auth_module_1 = require("./auth/auth.module");
+const stuff_module_1 = require("./stuff/stuff.module");
+const staff_entity_1 = require("./stuff/staff.entity");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -33,7 +35,7 @@ exports.AppModule = AppModule = __decorate([
                 username: 'postgres',
                 password: 'root',
                 synchronize: true,
-                entities: [post_entity_1.Post, user_entity_1.User],
+                entities: [post_entity_1.Post, user_entity_1.User, staff_entity_1.Stuff],
                 database: 'teacher',
                 autoLoadEntities: true,
             }),
@@ -43,7 +45,8 @@ exports.AppModule = AppModule = __decorate([
                 rootPath: path.resolve(__dirname, "static")
             }),
             user_module_1.UserModule,
-            auth_module_1.AuthModule
+            auth_module_1.AuthModule,
+            stuff_module_1.StuffModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService, auth_service_1.AuthService],

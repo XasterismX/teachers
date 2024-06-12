@@ -14,7 +14,7 @@ const uuid = require("uuid");
 let FilesService = class FilesService {
     async createFile(file) {
         try {
-            const fileName = uuid.v4() + '.jpg';
+            const fileName = uuid.v4() + "." + file.originalname.split(".")[1];
             const filePath = path.resolve(__dirname, '..', 'static');
             if (!fs.existsSync(filePath)) {
                 fs.mkdirSync(filePath, { recursive: true });
