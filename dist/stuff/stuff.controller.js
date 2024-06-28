@@ -16,6 +16,7 @@ exports.StuffController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
 const stuff_service_1 = require("./stuff.service");
+const auth_guard_1 = require("../auth/auth.guard");
 let StuffController = class StuffController {
     constructor(stuffService) {
         this.stuffService = stuffService;
@@ -23,9 +24,16 @@ let StuffController = class StuffController {
     async uploadStuff(file, type) {
         return await this.stuffService.uploadStuff(file, type);
     }
+    async getStuff() {
+        return await this.stuffService.getStuff();
+    }
+    async getStuffByType(type) {
+        return this.stuffService.getStuffByType(type);
+    }
 };
 exports.StuffController = StuffController;
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Post)("/upload"),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)("file")),
     __param(0, (0, common_1.UploadedFile)()),
@@ -34,8 +42,21 @@ __decorate([
     __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", Promise)
 ], StuffController.prototype, "uploadStuff", null);
+__decorate([
+    (0, common_1.Get)(""),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], StuffController.prototype, "getStuff", null);
+__decorate([
+    (0, common_1.Get)("/:type"),
+    __param(0, (0, common_1.Param)("type")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], StuffController.prototype, "getStuffByType", null);
 exports.StuffController = StuffController = __decorate([
-    (0, common_1.Controller)('stuff'),
+    (0, common_1.Controller)("stuff"),
     __metadata("design:paramtypes", [stuff_service_1.StuffService])
 ], StuffController);
 //# sourceMappingURL=stuff.controller.js.map

@@ -9,7 +9,7 @@ import { ConfigService } from "@nestjs/config";
 @Module({
   imports: [UserModule, JwtModule.register({
     global: true,
-    secretOrPrivateKey:"JWTSECRETKJDT",
+    secret:"JWTSECRETKJDT",
     signOptions:{
       expiresIn: "24h"
     }

@@ -27,6 +27,12 @@ let StuffService = class StuffService {
         const fileName = await this.fileService.createFile(file);
         return await this.stuffRepo.save({ name: fileName, type });
     }
+    async getStuff() {
+        return await this.stuffRepo.find();
+    }
+    async getStuffByType(type) {
+        return await this.stuffRepo.find({ where: { type } });
+    }
 };
 exports.StuffService = StuffService;
 exports.StuffService = StuffService = __decorate([

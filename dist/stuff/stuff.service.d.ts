@@ -9,4 +9,6 @@ export declare class StuffService {
         name: string;
         type: string;
     } & Stuff>;
+    getStuff(): Promise<Stuff[]>;
+    getStuffByType(type: string): Promise<Stuff[]>;
 }

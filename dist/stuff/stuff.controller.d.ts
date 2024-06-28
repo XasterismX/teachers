@@ -6,4 +6,6 @@ export declare class StuffController {
         name: string;
         type: string;
     } & import("./staff.entity").Stuff>;
+    getStuff(): Promise<import("./staff.entity").Stuff[]>;
+    getStuffByType(type: string): Promise<import("./staff.entity").Stuff[]>;
 }
