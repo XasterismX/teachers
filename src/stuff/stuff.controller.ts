@@ -1,4 +1,4 @@
-import { Controller, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Controller, Post, Query, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { StuffService } from "./stuff.service";
 
@@ -9,8 +9,8 @@ export class StuffController {
   }
   @Post("/upload")
   @UseInterceptors(FileInterceptor("file"))
-  async uploadStuff(@UploadedFile() file) {
-    return await this.stuffService.uploadStuff(file)
+  async uploadStuff(@UploadedFile() file, @Query("type") type: string) {
+    return await this.stuffService.uploadStuff(file, type)
   }
 
 }

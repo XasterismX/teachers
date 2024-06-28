@@ -12,4 +12,5 @@ export declare class AuthService {
     login(dto: UserDto): Promise<{
         access_token: string;
     }>;
+    delete(id: any): Promise<import("typeorm").DeleteResult>;
 }

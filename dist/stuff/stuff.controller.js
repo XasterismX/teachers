@@ -20,8 +20,8 @@ let StuffController = class StuffController {
     constructor(stuffService) {
         this.stuffService = stuffService;
     }
-    async uploadStuff(file) {
-        return await this.stuffService.uploadStuff(file);
+    async uploadStuff(file, type) {
+        return await this.stuffService.uploadStuff(file, type);
     }
 };
 exports.StuffController = StuffController;
@@ -29,8 +29,9 @@ __decorate([
     (0, common_1.Post)("/upload"),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)("file")),
     __param(0, (0, common_1.UploadedFile)()),
+    __param(1, (0, common_1.Query)("type")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", Promise)
 ], StuffController.prototype, "uploadStuff", null);
 exports.StuffController = StuffController = __decorate([

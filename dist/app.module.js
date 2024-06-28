@@ -11,8 +11,6 @@ const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const typeorm_1 = require("@nestjs/typeorm");
-const post_module_1 = require("./post/post.module");
-const post_entity_1 = require("./post/post.entity");
 const files_module_1 = require("./files/files.module");
 const serve_static_1 = require("@nestjs/serve-static");
 const user_module_1 = require("./user/user.module");
@@ -35,11 +33,10 @@ exports.AppModule = AppModule = __decorate([
                 username: 'postgres',
                 password: 'root',
                 synchronize: true,
-                entities: [post_entity_1.Post, user_entity_1.User, staff_entity_1.Stuff],
+                entities: [user_entity_1.User, staff_entity_1.Stuff],
                 database: 'teacher',
                 autoLoadEntities: true,
             }),
-            post_module_1.PostModule,
             files_module_1.FilesModule,
             serve_static_1.ServeStaticModule.forRoot({
                 rootPath: path.resolve(__dirname, "static")

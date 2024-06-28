@@ -9,4 +9,5 @@ export declare class AuthController {
     login(userDto: UserDto): Promise<{
         access_token: string;
     }>;
+    delete(id: number): Promise<import("typeorm").DeleteResult>;
 }

@@ -5,7 +5,8 @@ export declare class StuffService {
     private fileService;
     private stuffRepo;
     constructor(fileService: FilesService, stuffRepo: Repository<Stuff>);
-    uploadStuff(file: any): Promise<{
+    uploadStuff(file: any, type: string): Promise<{
         name: string;
+        type: string;
     } & Stuff>;
 }

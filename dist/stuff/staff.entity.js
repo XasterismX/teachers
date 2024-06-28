@@ -22,6 +22,10 @@ __decorate([
     (0, typeorm_1.Column)({ type: "text" }),
     __metadata("design:type", String)
 ], Stuff.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "text" }),
+    __metadata("design:type", String)
+], Stuff.prototype, "type", void 0);
 exports.Stuff = Stuff = __decorate([
     (0, typeorm_1.Entity)()
 ], Stuff);

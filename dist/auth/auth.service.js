@@ -40,6 +40,13 @@ let AuthService = class AuthService {
         }
         return this.generateJwt({ ...dto, password: null });
     }
+    async delete(id) {
+        const candidate = await this.userService.getOneUser(id);
+        if (!candidate) {
+            throw new common_1.HttpException("Пользователь не найден", common_1.HttpStatus.BAD_REQUEST);
+        }
+        return this.userService.deleteUser(id);
+    }
 };
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([

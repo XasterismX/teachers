@@ -10,9 +10,9 @@ export class StuffService {
   constructor(private fileService: FilesService, @InjectRepository(Stuff) private stuffRepo: Repository<Stuff>) {
   }
 
-  async uploadStuff(file){
+  async uploadStuff(file, type: string){
     const fileName = await this.fileService.createFile(file)
-    return await this.stuffRepo.save({ name: fileName })
+    return await this.stuffRepo.save({ name: fileName, type })
   }
 
 

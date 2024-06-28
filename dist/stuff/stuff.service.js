@@ -23,9 +23,9 @@ let StuffService = class StuffService {
         this.fileService = fileService;
         this.stuffRepo = stuffRepo;
     }
-    async uploadStuff(file) {
+    async uploadStuff(file, type) {
         const fileName = await this.fileService.createFile(file);
-        return await this.stuffRepo.save({ name: fileName });
+        return await this.stuffRepo.save({ name: fileName, type });
     }
 };
 exports.StuffService = StuffService;
